@@ -1,0 +1,138 @@
+/**
+ * Body CSS
+ */
+
+html,
+body {
+  height: 100%;
+}
+
+html,
+body,
+input,
+textarea,
+button {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+
+
+/**
+ * Header CSS
+ */
+
+header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+}
+
+header ul.mui-list--inline {
+  margin-bottom: 0;
+}
+
+header a {
+  color: white;
+}
+
+
+/**
+ * Content CSS
+ */
+
+#content-wrapper {
+  min-height: 100%;
+
+  /* sticky footer */
+  box-sizing: border-box;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+
+/**
+ * Footer CSS
+ */
+
+footer {
+  box-sizing: border-box;
+  height: 40px;
+  background-color: #eee;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 5px;
+  bottom: 0;
+}
+
+.footer-container {
+  height: 20px;
+}
+
+/**
+ * D3
+ */
+
+div.bar {
+      display: inline-block;
+      width: 20px;
+      height: 75px;
+      background-color: teal;
+      margin-right: 2px;
+  }
+
+  .axis path,
+  .axis line {
+      fill: none;
+      stroke: black;
+      shape-rendering: crispEdges;
+  }
+  .axis text {
+      font-family: sans-serif;
+      font-size: 11px;
+  }
+  rect:hover {
+      fill: purple;
+  }
+
+  .side-panels {
+    float: left;
+    display: grid;
+  }
+
+  .details-panel {
+    width: 200px;
+    float: left;
+    margin-left: 25px;
+  }
+
+  .calculation-panel {
+    display: none;
+    width: 200px;
+    float: left;
+    margin-left: 25px;
+    text-align: left;
+  }
+
+  .titles {
+      margin-left: 350px;
+      text-align: left;
+  }
+  .titles p {
+    font-size: 20px;
+    color: grey;
+    margin: 0;
+  }
+
+  .titles span {
+    color: black;
+  }
+
+  .gender {
+    margin-left: 15px;
+  }
+
+  #gender-title {
+    margin-top: 0;
+  }

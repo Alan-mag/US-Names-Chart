@@ -1,0 +1,290 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//cdn.muicss.com/mui-latest/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <script src="//cdn.muicss.com/mui-latest/js/mui.min.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.9.1/d3.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <link href="static/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <header class="mui-appbar mui--z1">
+      <div class="mui-container">
+        <table width="100%">
+          <tr class="mui--appbar-height">
+            <td class="mui--text-title">U.S. Names 1880 - 2010</td>
+            <td align="right">
+              <ul class="mui-list--inline mui--text-body2">
+                <li><a target="_" href="https://catalog.data.gov/dataset/baby-names-from-social-security-card-applications-national-level-data">Source</a></li>
+                <!--<li><a href="#">Pricing</a></li>
+                <li><a href="#">Login</a></li>-->
+              </ul>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </header>
+    <div id="content-wrapper" class="mui--text-center">
+      <div class="mui--appbar-height"></div>
+      <br>
+      <div class="titles">
+        <p>
+          Name: <span id="name-title">Martha</span> 
+         <br>
+         Gender: <span id="gender-title">Female</span>
+        </p>
+      </div>
+      <div class="side-panels">
+          <div class="details-panel mui-panel">
+            <form class="mui-form">
+                <div class="mui-textfield mui-textfield--float-label">
+                <input id="name" type="text" name="Name" value="Martha" /><br>
+                <label>Name</label>
+                </div>
+                <div class="mui-radio">
+                  <input class="gender" type="radio" name="gender" value="M" /> Male
+                  <input class="gender" type="radio" name="gender" value="F" checked="checked" /> Female<br>
+                </div>
+            </form>
+            <button class="btn mui-btn mui-btn--primary">Search</button>
+          </div>
+          <div class="mui-panel calculation-panel">
+            <p>Mean</p>
+            <p>Variance</p>
+            <p>Standard Deviation</p>
+          </div>
+      </div>
+    </div>
+    <footer>
+      <div class="mui-container mui--text-center footer-container">
+        Made by Alan
+      </div>
+    </footer>
+
+    <!-- Script for d3-->
+    <script>
+      // set width and height
+        var w = 880;
+        var h = 450;
+        var padding = 40;
+
+        // declare datset
+        var dataset = [16, 22, 28, 28, 23, 27, 26, 32, 83, 143, 178, 225, 374, 702];
+        //var boop = [742, 485, 247, 255, 242, 241, 218, 258, 162, 41, 106, 128, 225, 248];
+
+
+        // gather data
+        // var trials = dataset.length;
+        // var sum = calculateSum(dataset);
+        // var mean = trials / sum;
+
+
+        // var calculateSum = function(data) {
+        //   var sum
+        //   for (i = 0; i < data.length; i++) {
+        //     sum = sum + data[i];
+        //   }
+        //   return sum;
+        // }
+
+        // var calculateVariance = function(popSize, popMean, data) {
+        //   var trials = data.length;
+        //   var sum = calculateSum(data);
+        //   var mean = trials / sum;
+
+        //   var differenceSquare = 0;
+        //   for (i = 0; i < data.length; i++) {
+        //     differenceSquare+=(data[i] - popMean)^2
+        //   }
+        //   var variance = differenceSquare / popSize;
+        //   return variance;
+        // }
+        
+        // console.log(calculateVariance(trials, sum, data)); http://pad1.whstatic.com/images/thumb/a/a7/Calculate-Variance-Step-10.jpg/aid867321-v4-728px-Calculate-Variance-Step-10.jpg.webp
+
+        // var calculateMean = function(data) {
+        //   var total = 0;
+        //   var trials = 0
+        //   for (i = 0; i < dataset.length; i++) {
+        //     trials++;
+        //     total = total + dataset[i];
+        //   }
+        //   mean = total / trials;
+        //   return mean;
+        // }
+
+        // console.log(calculateMean(dataset));
+
+        var xScale = d3.scaleBand()
+                       .domain(["1880","1890","1900","1910","1920","1930","1940","1950","1960","1970","1980","1990","2000","2010"])
+                       .rangeRound([padding, w - padding ])
+                       .paddingInner(0.05);
+
+        var yScale = d3.scaleLinear()
+                       .domain([1, 1000])
+                       .range([padding, h - padding ]);
+
+        var svg = d3.select("#content-wrapper")
+                    .append("svg")
+                    .attr("width", w)
+                    .attr("height", h);
+
+        svg.selectAll("rect")
+                    .data(dataset)
+                    .enter()
+                    .append("rect")
+                    .attr("x", function(d, i) {
+                        return xScale(i * 10 + 1880);
+                    })
+                    .attr("y", function(d) {
+                        return h - yScale(1000 - d);
+                    })
+                    .attr("width", xScale.bandwidth())
+                    .attr("height", function(d) {
+                        return yScale(1000 - d - 120);
+                    })
+                    .attr("fill", function(d) {
+                        return "rgb(0, 0, " + (d * 10) + ")";
+                    })
+                    .append("title")
+                    .text(function(d) {
+                        return "The value is " + d;
+                    });
+
+        // v4 Axes
+        var xAxis = d3.axisBottom(xScale);
+        var yAxis = d3.axisLeft(yScale);
+
+        // call axis after svg generated
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + (h - padding) + ")")
+            .call(d3.axisBottom(xScale));
+
+        svg.append("g")
+            .attr("class", "y axis")
+            .attr("transform", "translate(" + padding + ", 0)")
+            .call(d3.axisLeft(yScale));
+
+        // now add titles to the axes
+        svg.append("text")
+            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+            .attr("transform", "translate("+ (padding/4) +","+(h/2)+")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
+            .text("Popularity");
+
+        svg.append("text")
+            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+            .attr("transform", "translate("+ (w/2) +","+(h-(padding/5))+")")  // centre below axis
+            .text("Decade");
+
+        // on click function
+        d3.select(".btn")
+            .on("click", function(name, gender) {
+
+                // get name and gender format correct
+                // Include formatting!
+                var searchName = document.getElementById("name").value;
+                console.log(searchName);
+
+                //format name
+                var firstLetter = searchName.charAt(0).toUpperCase();
+                var restOfName = searchName.substring(1).toLowerCase();
+                var formattedName = firstLetter + restOfName;
+
+                document.getElementById("name-title").innerHTML = formattedName;
+
+
+                var searchGender = document.querySelector("input[name='gender']:checked").value;
+                console.log(searchGender);
+
+                if (searchGender == "M") {
+                    document.getElementById("gender-title").innerHTML = (searchGender + "ale");
+                } else {
+                    document.getElementById("gender-title").innerHTML = (searchGender + "emale");
+                }
+
+
+
+                d3.json("/data.json", function(error, data) {
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].Name == formattedName && data[i].Gender == searchGender) {
+                            console.log(data[i]);
+                            var split_data = data[i].Rank.split(" ");
+                            console.log(split_data);
+                            
+                            var new_data_array = [];
+                            for (var j = 0; j < split_data.length; j++) {
+                                var n = parseInt(split_data[j]);
+                                if (n == 0) {
+                                    n +=985
+                                    //n +=1000;
+                                    new_data_array.push(n);
+                                } else {
+                                    new_data_array.push(n);
+                                }
+                            }
+                            console.log(new_data_array);
+                            console.log(typeof new_data_array);
+                        
+
+                            dataset = new_data_array;
+
+                            var bars = svg.selectAll("rect")
+                                        .data(dataset);   
+
+                            //Enter…
+                            bars.enter()								
+                                .append("rect")							
+                                .attr("x", function(d, i) {
+                                    return xScale(i * 10 + 1880);
+                                })
+                                .attr("y", function(d) {
+                                    return h - yScale(1000 - d);
+                                })
+                                .attr("width", xScale.bandwidth())		
+                                .attr("height", function(d) {
+                                    return yScale(1000 - d - 120);
+                                })
+                                .attr("fill", function(d) {				
+                                    return "rgb(0, 0, " + (d * 10) + ")";
+                                });
+
+                            //Update…
+                            bars.transition()							
+                                .duration(500)
+                                .attr("x", function(d, i) {
+                                    return xScale(i * 10 + 1880);
+                                })
+                                .attr("y", function(d) {
+                                    return h - yScale(1000 - d);
+                                })
+                                .attr("width", xScale.bandwidth())		
+                                .attr("height", function(d) {
+                                    return yScale(1000 - d - 120);
+                                })
+                                .attr("fill", function(d) {				
+                                    return "rgb(250, 70, " + (d * 2) + ")";
+                                });
+
+                            bars.exit()
+                                .transition()
+                                .duration(500)
+                                .attr("x", -xScale.bandwidth())
+                                .remove();
+
+                        } 
+                    }
+                });
+
+            }) // end on click function
+    </script>
+
+  </body>
+</html>
