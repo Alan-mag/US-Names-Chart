@@ -230,7 +230,7 @@
 
 
 
-                d3.json("/data.json", function(error, data) {
+                d3.json("data.json", function(error, data) {
                     for (var i = 0; i < data.length; i++) {
                         if (data[i].Name == formattedName && data[i].Gender == searchGender) {
                             console.log(data[i]);
