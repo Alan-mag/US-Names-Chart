@@ -278,7 +278,7 @@
                             bars.transition()							
                                 .duration(800)
                                 .delay(function(d, i) {
-                                    return i / dataset.length * 50; 
+                                    return i / dataset.length * 1000; 
                                 })
                                 .attr("x", function(d, i) {
                                     return xScale(i * 10 + 1880);
@@ -305,7 +305,7 @@
                                 .transition()
                                 //.delay(250) 
                                 .delay(function(d, i) {
-                                    return i / dataset.length * 50; 
+                                    return i / dataset.length * 1000; 
                                 })
                                 .duration(1000)
                                 .text(function(d) {
