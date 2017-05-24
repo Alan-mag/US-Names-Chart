@@ -1,0 +1,7 @@
+-Add mean, variance, standard deviation - account for zeros
+-Add article
+-choose random color option
+-give graph a title
+-make graph axis labels bigger
+-make title in nav return home on click
+-make responsive

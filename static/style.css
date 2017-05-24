@@ -116,11 +116,11 @@ div.bar {
   }
 
   .titles {
-      margin-left: 350px;
+      margin-left: 370px;
       text-align: left;
   }
   .titles p {
-    font-size: 20px;
+    font-size: 18px;
     color: grey;
     margin: 0;
   }
@@ -135,4 +135,20 @@ div.bar {
 
   #gender-title {
     margin-top: 0;
+  }
+
+  #mean {
+    font-weight: bold;
+  }
+
+   #variance {
+    font-weight: bold;
+  }
+
+   #standard_deviation {
+    font-weight: bold;
+  }
+
+  #calc-button {
+    margin-left: 0;
   }
