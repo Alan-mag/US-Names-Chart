@@ -1,7 +1,16 @@
--Add mean, variance, standard deviation - account for zeros
+-Add mean, variance, standard deviation - account for zeros XXXX
 -Add article
 -choose random color option
--give graph a title
--make graph axis labels bigger
--make title in nav return home on click
--make responsive
+-give graph a title XXX
+-make graph axis labels bigger XXXX
+-make title in nav return home on click XXXX
+-make responsive XXXX
+
+
+
+Article notes
+-comparing Alan, Allen, and Allan
+-Names that came and went (Britney, Dick, bella (twilight) - kristen reverse correlation
+ Rihanna first shows up in 2010
+ Adele 909 2010
+-

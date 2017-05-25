@@ -45,11 +45,28 @@ header a {
 
 #content-wrapper {
   min-height: 100%;
-
   /* sticky footer */
   box-sizing: border-box;
   margin-bottom: 0;
   padding-bottom: 0;
+}
+
+#svg-wrapper {
+  min-height: 100%;
+  position: initial;
+
+  box-sizing: border-box;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+svg {
+  position: absolute;
+  left: 21%;
+  top: 18%;
+  right: 0;
+  height: 70%;
+  width: 100%;
 }
 
 
@@ -116,7 +133,7 @@ div.bar {
   }
 
   .titles {
-      margin-left: 370px;
+      margin-left: 24%;
       text-align: left;
   }
   .titles p {
@@ -151,4 +168,8 @@ div.bar {
 
   #calc-button {
     margin-left: 0;
+  }
+
+  .bold {
+    font-weight: bold;
   }

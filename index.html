@@ -19,11 +19,11 @@
       <div class="mui-container">
         <table width="100%">
           <tr class="mui--appbar-height">
-            <td class="mui--text-title">U.S. Names 1880 - 2010</td>
+            <td class="mui--text-title"><a href="index.html">U.S. Names 1880 - 2010</a></td>
             <td align="right">
               <ul class="mui-list--inline mui--text-body2">
                 <li><a target="_" href="https://catalog.data.gov/dataset/baby-names-from-social-security-card-applications-national-level-data">Source</a></li>
-                <li><a href="#">Article</a></li>
+                <li><a href="article.html">Article</a></li>
                 <!-- <li><a href="#">Login</a></li> -->
               </ul>
             </td>
@@ -32,8 +32,10 @@
       </div>
     </header>
     <div id="content-wrapper" class="mui--text-center">
+
       <div class="mui--appbar-height"></div>
       <br>
+      <div id="svg-wrapper"></div>
       <div class="titles">
         <p>
           Name: <span id="name-title">Martha</span> 
@@ -166,7 +168,7 @@
                        .domain([1, 1000])
                        .range([padding, h - padding ]);
 
-        var svg = d3.select("#content-wrapper")
+        var svg = d3.select("#svg-wrapper")
                     .append("svg")
                     .attr("width", w)
                     .attr("height", h)
@@ -217,6 +219,7 @@
         // Add title
         svg.append("text")
             .attr("x", (w / 2))
+            .attr("transform", "translate(" + (-50) + ", 0)")
             .attr("y", (20))
             .attr("text-anchor", "middle")
             .style("text-decoration", "underline")
