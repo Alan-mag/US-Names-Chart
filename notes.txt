@@ -1,5 +1,5 @@
 -Add mean, variance, standard deviation - account for zeros XXXX
--Add article
+-Add article XXXX
 -choose random color option
 -give graph a title XXX
 -make graph axis labels bigger XXXX

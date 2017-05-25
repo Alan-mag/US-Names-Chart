@@ -49,6 +49,7 @@ header a {
   box-sizing: border-box;
   margin-bottom: 0;
   padding-bottom: 0;
+  margin-top: -40px;
 }
 
 #svg-wrapper {
@@ -135,6 +136,7 @@ div.bar {
   .titles {
       margin-left: 24%;
       text-align: left;
+      margin-top: 40px;
   }
   .titles p {
     font-size: 18px;
