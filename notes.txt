@@ -6,3 +6,5 @@
 -make title in nav return home on click XXXX
 -make responsive XXXX
 -fix enter key reload https://stackoverflow.com/questions/8866053/stop-reloading-page-with-enter-key
+
+-enter key fix
