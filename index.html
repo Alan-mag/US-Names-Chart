@@ -65,8 +65,8 @@
                   <input class="gender" type="radio" name="gender" value="M" /> Male
                   <input class="gender" type="radio" name="gender" value="F" checked="checked" /> Female<br>
                 </div>
+                <button class="btn mui-btn mui-btn--primary submit">Search</button>
             </form>
-            <button class="btn mui-btn mui-btn--primary">Search</button>
             <button class="mui-btn mui-btn--small mui-btn--accent" id="calc-button">Details</button>
           </div>
           <div class="mui-panel calculation-panel">
@@ -265,9 +265,10 @@
             .text("Decade");
 
         // on click function
-        d3.select(".btn")
-            .on("click", function(name, gender) {
-
+        // d3.select(".btn")
+        //     .on("click", function(name, gender) {
+            d3.select(".mui-form").on("submit", function(name, gender) {
+                d3.event.preventDefault();
                 // get name and gender format correct
                 // Include formatting!
                 var searchName = document.getElementById("name").value;
