@@ -63,11 +63,12 @@ header a {
 
 svg {
   position: absolute;
-  left: 21%;
+  left: 15%;
   top: 18%;
   right: 0;
   height: 70%;
-  width: 100%;
+  width: 75%;
+  margin-left: 75px;
 }
 
 
