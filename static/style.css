@@ -126,6 +126,23 @@ div.bar {
     margin-left: 25px;
   }
 
+   .error-panel {
+    width: 200px;
+    float: left;
+    margin-left: 25px;
+    color: white;
+    display: none;
+    height: 25px;
+    margin-top: -63px;
+    background-color: #E91E63;
+    border-radius: 4px;
+    position: absolute;
+  }
+
+  .error-panel h5 {
+    line-height: 0px;
+  }
+
   .calculation-panel {
     display: none;
     width: 200px;

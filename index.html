@@ -33,8 +33,8 @@
             <td class="mui--text-title"><a href="index.html">U.S. Names 1880 - 2010</a></td>
             <td align="right">
               <ul class="mui-list--inline mui--text-body2">
-                <li><a href="index.html">Graph</a></li>
-                <li><a href="article.html">Article</a></li>
+                <!--<li><a href="index.html">Graph</a></li>-->
+                <!--<li><a href="article.html">Article</a></li>-->
                 <li><a target="_" href="https://catalog.data.gov/dataset/baby-names-from-social-security-card-applications-national-level-data">Source</a></li>
               </ul>
             </td>
@@ -55,10 +55,14 @@
         </p>
       </div>
       <div class="side-panels">
+          <div class="error-panel mui-panel mui--z3">
+              <h5>Name/Gender match not found</h5>
+          </div>
+
           <div class="details-panel mui-panel">
             <form class="mui-form">
                 <div class="mui-textfield mui-textfield--float-label">
-                <input id="name" type="text" name="Name" value="Martha" /><br>
+                <input id="name" type="text" name="Name" value="Martha" required/><br>
                 <label>Name</label>
                 </div>
                 <div class="mui-radio">
@@ -264,9 +268,14 @@
             .style("font-size", "14px")
             .text("Decade");
 
+        // variable for validating find
+        var found = false;
+
         // on click function
         // d3.select(".btn")
         //     .on("click", function(name, gender) {
+
+
             d3.select(".mui-form").on("submit", function(name, gender) {
                 d3.event.preventDefault();
                 // get name and gender format correct
@@ -294,8 +303,10 @@
 
 
                 d3.json("data.json", function(error, data) {
+                    //return new Promise(function(resolve, reject) {
                     for (var i = 0; i < data.length; i++) {
                         if (data[i].Name == formattedName && data[i].Gender == searchGender) {
+                            found = true;
                             console.log(data[i]);
                             var split_data = data[i].Rank.split(" ");
                             console.log(split_data);
@@ -383,8 +394,21 @@
                                     return h - yScale(1000 - d) + 14;
                                 });
 
-                        } 
+                        } // end drawing valid data
+                    } // end for loop checking for name/gender match
+                    if (found === true) {
+                        $("#name").css({ "border-color" : "#2196F3" });
+                        $(".error-panel").hide();
+                        $("#calc-button").show();
+                        found = false;
+                    } else {
+                        $("#name").css({ "border-color" : "red" });
+                        $(".error-panel").fadeIn("slow");
+                        $("#calc-button").hide();
+                        found = false;
                     }
+                    //}); // end promise
+                    console.log(found);
                 });
 
             }) // end on click function
